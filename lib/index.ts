@@ -14,17 +14,21 @@ export async function rss(config: RSSConfig) {
 
   async function processFeed(feed: RSSFeed) {
     const url = typeof feed === "string" ? feed : feed.url;
-    const feedData = await parser.parseURL(url);
-    const updates = await storage.update(url, feedData);
+    try {
+      const feedData = await parser.parseURL(url);
+      const updates = await storage.update(url, feedData);
 
-    console.log(`${updates.length} updates for ${feedData.title}`);
-    if (!updates.length) return;
+      console.log(`${updates.length} updates for ${feedData.title}`);
+      if (!updates.length) return;
 
-    const rule = config.rules?.find((rule) => rule.regex.test(url));
-    const formatter =
-      rule?.format || ((item) => [item.title, item.link].join("\n\n"));
+      const rule = config.rules?.find((rule) => rule.regex.test(url));
+      const formatter =
+        rule?.format || ((item) => [item.title, item.link].join("\n\n"));
 
-    const items = updates.map(formatter);
-    await forwarder.send(items);
+      const items = updates.map(formatter);
+      await forwarder.send(items);
+    } catch (e) {
+      console.error(`some error happened in processing feed ${url}: ${e}`);
+    }
   }
 }
