@@ -4,6 +4,7 @@ import fs from "fs/promises";
 import yaml from "js-yaml";
 
 const content = path.join(process.cwd(), "content");
+console.log(`using ${content} as content dir`);
 
 const serializer = {
   parse(input: string) {

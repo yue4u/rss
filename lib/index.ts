@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
-dotenv.config();
+import cron from "node-cron";
+import { Cron as c } from "cron-infer";
 import Parser from "rss-parser";
 import type { RSSConfig, RSSFeed } from "./type";
 import { telegram } from "./forwarder/telegram";
@@ -10,7 +10,18 @@ export async function rss(config: RSSConfig) {
   const forwarder = { telegram }[config.forward.type].init(config.forward);
   const storage = { local }[config.storage];
 
-  await Promise.all(config.feeds.map(processFeed));
+  config.feeds.map((feed) => {
+    cron.schedule(...toJob(feed));
+  });
+  await forwarder.send([`rss server started!`]);
+
+  function toJob(feed: RSSFeed): Parameters<typeof cron["schedule"]> {
+    return [
+      // this is wrong but short and works..
+      feed["cron" as keyof RSSFeed] ?? c("0 12 * * *"),
+      () => processFeed(feed),
+    ];
+  }
 
   async function processFeed(feed: RSSFeed) {
     const url = typeof feed === "string" ? feed : feed.url;
@@ -18,7 +29,7 @@ export async function rss(config: RSSConfig) {
       const feedData = await parser.parseURL(url);
       const updates = await storage.update(url, feedData);
 
-      console.log(`${updates.length} updates for ${feedData.title}`);
+      await forwarder.send([`${updates.length} updates for ${feedData.title}`]);
       if (!updates.length) return;
 
       const rule = config.rules?.find((rule) => rule.regex.test(url));
