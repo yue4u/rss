@@ -67,6 +67,7 @@ function toJob({
       console.error(`some error happened in processing feed ${url}: ${e}`);
     }
   };
-
+  // sync on server start
+  process().catch(console.error);
   return [jobCron, process];
 }
