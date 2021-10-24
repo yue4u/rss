@@ -9,13 +9,17 @@ import type {
 } from "./type";
 import { telegram } from "./forwarder/telegram";
 import { local } from "./storage/local";
+import { mongodb } from "./storage/mongodb";
 
 export async function rss(config: RSSConfig) {
   const ctx = {
     config,
     parser: new Parser(),
     forwarder: { telegram }[config.forward.type].init(config.forward),
-    storage: { local }[config.storage],
+    storage: await { local, mongodb }[config.storage.type].init(
+      // here config.storage is guaranteed to have correct config type
+      config.storage as any
+    ),
   };
 
   config.feeds.map((feed, index) => {

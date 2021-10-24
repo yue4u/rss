@@ -1,7 +1,9 @@
 import { rss } from "./lib";
 
 rss({
-  storage: "local",
+  storage: {
+    type: "local",
+  },
   forward: {
     type: "telegram",
     token: process.env.TG_TOKEN!,
