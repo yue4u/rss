@@ -4,9 +4,6 @@ import fs from "fs/promises";
 import yaml from "js-yaml";
 import { storageHelper } from "../shared";
 
-const content = path.join(process.cwd(), "content");
-console.log(`using ${content} as content dir`);
-
 interface SavedFeedInfo {
   title: string;
   url: string;
@@ -28,6 +25,9 @@ export type LocalStorageConfig = {
 
 export const local: Storage<LocalStorageConfig> = {
   async init() {
+    const content = path.join(process.cwd(), "content");
+    console.log(`using ${content} as content dir`);
+
     return {
       async update(url, feed) {
         if (!feed.title) throw `no title in feed ${feed.title}`;
