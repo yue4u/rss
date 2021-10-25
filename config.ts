@@ -19,7 +19,7 @@ rss({
     "https://css-tricks.com/feed/",
     "https://overreacted.io/rss.xml",
     "https://reactjs.org/feed.xml",
-    "https://blog.cloudflare.com/rss",
+    "https://blog.cloudflare.com/rss/", // note the trailing slash is necessary
     "https://blog.rust-lang.org/feed.xml",
     "https://rustmagazine.github.io/rust_magazine_2021/rss.xml",
     "https://www.swyx.io/rss.xml",
