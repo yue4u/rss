@@ -31,6 +31,7 @@ rss({
     "https://kentcdodds.com/blog/rss.xml",
     "https://jasonformat.com/posts.rss",
     "https://godotengine.org/rss.xml",
+    "https://blog.unity.com/feed"
   ],
   rules: [
     {
