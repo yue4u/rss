@@ -9,6 +9,7 @@ rss({
     type: "telegram",
     token: process.env.TG_TOKEN!,
     chatId: process.env.TG_CHAT_ID!,
+    limit: 10,
   },
   feeds: [
     "https://xkcd.com/rss.xml",
@@ -31,7 +32,10 @@ rss({
     "https://kentcdodds.com/blog/rss.xml",
     "https://jasonformat.com/posts.rss",
     "https://godotengine.org/rss.xml",
-    "https://blog.unity.com/feed"
+    "https://blog.unity.com/feed",
+    "https://blog.mozilla.org/feed",
+    "https://web.dev/feed.xml",
+    "https://v8.dev/blog.atom",
   ],
   rules: [
     {
