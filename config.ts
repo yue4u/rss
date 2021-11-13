@@ -36,6 +36,7 @@ rss({
     "https://blog.mozilla.org/feed",
     "https://web.dev/feed.xml",
     "https://v8.dev/blog.atom",
+    "https://blog.google/rss/",
   ],
   rules: [
     {
