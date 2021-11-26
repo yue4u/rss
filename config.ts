@@ -38,6 +38,7 @@ rss({
     "https://v8.dev/blog.atom",
     "https://blog.google/rss/",
     "https://nodejs.org/en/feed/blog.xml",
+    "https://vuedose.tips/rss",
   ],
   rules: [
     {
