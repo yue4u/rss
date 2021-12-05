@@ -39,6 +39,8 @@ rss({
     "https://blog.google/rss/",
     "https://nodejs.org/en/feed/blog.xml",
     "https://vuedose.tips/rss",
+    "https://inside.pixiv.blog/rss",
+    "https://www.swift.org/atom.xml",
   ],
   rules: [
     {
