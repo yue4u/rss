@@ -42,6 +42,7 @@ rss({
     "https://inside.pixiv.blog/rss",
     "https://www.swift.org/atom.xml",
     "https://engineering.mercari.com/blog/feed.xml/",
+    "https://testing.googleblog.com/feeds/posts/default",
   ],
   rules: [
     {
