@@ -43,6 +43,7 @@ rss({
     "https://www.swift.org/atom.xml",
     "https://engineering.mercari.com/blog/feed.xml/",
     "https://testing.googleblog.com/feeds/posts/default",
+    "https://tailscale.com/blog/index.xml",
   ],
   rules: [
     {
