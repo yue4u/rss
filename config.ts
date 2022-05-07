@@ -44,6 +44,7 @@ rss({
     "https://engineering.mercari.com/blog/feed.xml/",
     "https://testing.googleblog.com/feeds/posts/default",
     "https://tailscale.com/blog/index.xml",
+    "https://spidermonkey.dev/feed.xml",
   ],
   rules: [
     {
