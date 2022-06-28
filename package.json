@@ -20,11 +20,11 @@
     "@types/node-telegram-bot-api": "^0.51.4",
     "dotenv": "^10.0.0",
     "esbuild": "^0.13.9",
-    "esno": "^0.10.1",
+    "tsx": "^3.6.0",
     "typescript": "^4.4.4"
   },
   "scripts": {
-    "build": "esno ./build.ts",
+    "build": "tsx ./build.ts",
     "clean": "rm -rf dist",
     "preinstall": "npx -y only-allow pnpm"
   }
