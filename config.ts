@@ -45,6 +45,7 @@ rss({
     "https://testing.googleblog.com/feeds/posts/default",
     "https://tailscale.com/blog/index.xml",
     "https://spidermonkey.dev/feed.xml",
+    "https://deno.com/feed",
   ],
   rules: [
     {
