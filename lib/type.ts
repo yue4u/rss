@@ -36,7 +36,7 @@ export interface RSSConfig {
   forward: RSSForwardConfig;
   feeds: RSSFeedSourceOrUrl[];
   rules?: (source: {
-    feed: RSSFeedSource;
+    feed: RSSFeedSourceOrUrl;
     index: number;
   }) => RSSFeedSourceConfig;
 }

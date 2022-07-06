@@ -5,6 +5,7 @@ import type {
   RSSConfig,
   RSSContext,
   RSSFeedSource,
+  RSSFeedSourceOrUrl,
 } from "./type";
 import { telegram } from "./forwarder/telegram";
 import { local } from "./storage/local";
@@ -34,7 +35,7 @@ function toJob({
   index,
 }: {
   ctx: RSSContext;
-  feed: RSSFeedSource;
+  feed: RSSFeedSourceOrUrl;
   index: number;
 }): Parameters<typeof cron["schedule"]> {
   const feedSource = typeof feed === "string" ? {

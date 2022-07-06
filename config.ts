@@ -49,7 +49,7 @@ rss({
   ],
   rules({ index }) {
     return {
-      corn: `0 ${index % 24} * * *`,
+      cron: `0 ${index % 24} * * *`,
     };
   },
 });
