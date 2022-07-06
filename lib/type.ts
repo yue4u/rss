@@ -7,7 +7,10 @@ export type RawFeed = ReturnType<Parser["parseURL"]> extends Promise<infer T>
   ? T
   : never;
 
-export type RSSFeedSource = ({ url: string } & FeedConfig) | string;
+export interface RSSFeedSource extends RSSFeedSourceConfig {
+  url: string;
+}
+export type RSSFeedSourceOrUrl = RSSFeedSource | string;
 
 type RSSForwardConfig = TGConfig;
 export type FeedItem = RawFeed["items"][number] & { link: string };
@@ -23,23 +26,19 @@ export interface RSSContext {
   storage: StorageInstance;
 }
 
-export type FeedCronConfig = (source: {
-  feed: RSSFeedSource;
-  index: number;
-}) => string | string;
-
-export type FeedConfig = {
-  cron?: FeedCronConfig;
+export type RSSFeedSourceConfig = {
+  cron?: string;
   format?: ItemFormatter;
 };
 
 export interface RSSConfig {
   storage: LocalStorageConfig | MongodbStorageConfig;
   forward: RSSForwardConfig;
-  feeds: RSSFeedSource[];
-  rules?: ({
-    regex: RegExp;
-  } & FeedConfig)[];
+  feeds: RSSFeedSourceOrUrl[];
+  rules?: (source: {
+    feed: RSSFeedSource;
+    index: number;
+  }) => RSSFeedSourceConfig;
 }
 
 export interface Forwarder<C> {

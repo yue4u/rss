@@ -47,14 +47,9 @@ rss({
     "https://spidermonkey.dev/feed.xml",
     "https://deno.com/feed",
   ],
-  rules: [
-    {
-      regex: /css|vue/,
-      format: (feed) => feed.link,
-    },
-    {
-      regex: /./,
-      cron: ({ index }) => `0 ${index % 24} * * *`,
-    },
-  ],
+  rules({ index }) {
+    return {
+      corn: `0 ${index % 24} * * *`,
+    };
+  },
 });

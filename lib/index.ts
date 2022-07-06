@@ -2,7 +2,6 @@ import cron from "node-cron";
 import { Cron as c } from "cron-infer";
 import Parser from "rss-parser";
 import type {
-  FeedCronConfig,
   RSSConfig,
   RSSContext,
   RSSFeedSource,
@@ -38,40 +37,34 @@ function toJob({
   feed: RSSFeedSource;
   index: number;
 }): Parameters<typeof cron["schedule"]> {
-  const url = typeof feed === "string" ? feed : feed.url;
-  const rule = ctx.config.rules?.find((rule) => rule.regex.test(url));
-  const formatter =
-    rule?.format || ((item) => [item.title, item.link].join("\n\n"));
+  const feedSource = typeof feed === "string" ? {
+    url: feed,
+  } : feed;
 
-  const getCron = (cronConfig?: FeedCronConfig | null): string | null => {
-    if (!cronConfig) return null;
-
-    return typeof cronConfig === "string"
-      ? cronConfig
-      : cronConfig({ feed, index });
+  const source: Required<RSSFeedSource> = {
+    cron: c("0 12 * * *"),
+    format(item) {
+      return [item.title, item.link].join("\n\n");
+    },
+    ...ctx.config.rules?.({ feed, index }),
+    ...feedSource
   };
-
-  const jobCron =
-    // this casting is wrong but short and works..
-    getCron(feed["cron" as keyof RSSFeedSource]) ||
-    getCron(rule?.cron) ||
-    c("0 12 * * *");
 
   const process = async () => {
     try {
-      const feedData = await ctx.parser.parseURL(url);
-      const updates = await ctx.storage.update(url, feedData);
+      const feedData = await ctx.parser.parseURL(source.url);
+      const updates = await ctx.storage.update(source.url, feedData);
 
       // await forwarder.send([`${updates.length} updates for ${feedData.title}`]);
       if (!updates.length) return;
 
-      const items = updates.map(formatter);
+      const items = updates.map(source.format);
       await ctx.forwarder.send(items);
     } catch (e) {
-      console.error(`some error happened in processing feed ${url}: ${e}`);
+      console.error(`some error happened in processing feed ${source.url}: ${e}`);
     }
   };
   // sync on server start
   process().catch(console.error);
-  return [jobCron, process];
+  return [source.cron, process];
 }
