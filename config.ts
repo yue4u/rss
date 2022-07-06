@@ -25,7 +25,7 @@ rss({
     "https://rustmagazine.github.io/rust_magazine_2021/rss.xml",
     "https://www.swyx.io/rss.xml",
     "https://devblogs.microsoft.com/typescript/feed",
-    "https://news.vuejs.org/feed.xml",
+    "https://blog.vuejs.org/feed.rss",
     "https://webgl.souhonzan.org/rss",
     "https://engineering.fb.com/feed",
     "https://devblogs.microsoft.com/landingpage",
