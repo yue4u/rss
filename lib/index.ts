@@ -18,7 +18,8 @@ export async function rss(config: RSSConfig) {
     forwarder: { telegram }[config.forward.type].init(config.forward),
     storage: await { local, mongodb }[config.storage.type].init(
       // here config.storage is guaranteed to have correct config type
-      config.storage as any
+      // @ts-expect-error
+      config.storage
     ),
   };
 
