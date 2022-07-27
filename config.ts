@@ -46,6 +46,7 @@ rss({
     "https://tailscale.com/blog/index.xml",
     "https://spidermonkey.dev/feed.xml",
     "https://deno.com/feed",
+    "https://fly.io/blog/feed.xml",
   ],
   rules({ index }) {
     return {
