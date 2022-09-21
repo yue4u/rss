@@ -47,6 +47,7 @@ rss({
     "https://spidermonkey.dev/feed.xml",
     "https://deno.com/feed",
     "https://fly.io/blog/feed.xml",
+    "https://blog.jetbrains.com/feed/"
   ],
   rules({ index }) {
     return {
