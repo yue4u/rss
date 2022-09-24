@@ -24,7 +24,7 @@ rss({
     "https://blog.rust-lang.org/feed.xml",
     "https://rustmagazine.github.io/rust_magazine_2021/rss.xml",
     "https://www.swyx.io/rss.xml",
-    "https://devblogs.microsoft.com/typescript/feed",
+    "https://devblogs.microsoft.com/typescript/feed/",
     "https://blog.vuejs.org/feed.rss",
     "https://webgl.souhonzan.org/rss",
     "https://engineering.fb.com/feed",
@@ -47,7 +47,7 @@ rss({
     "https://spidermonkey.dev/feed.xml",
     "https://deno.com/feed",
     "https://fly.io/blog/feed.xml",
-    "https://blog.jetbrains.com/feed/"
+    "https://blog.jetbrains.com/feed/",
   ],
   rules({ index }) {
     return {
