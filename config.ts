@@ -48,6 +48,7 @@ rss({
     "https://deno.com/feed",
     "https://fly.io/blog/feed.xml",
     "https://blog.jetbrains.com/feed/",
+    "https://vercel.com/atom",
   ],
   rules({ index }) {
     return {
