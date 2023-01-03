@@ -49,6 +49,7 @@ rss({
     "https://fly.io/blog/feed.xml",
     "https://blog.jetbrains.com/feed/",
     "https://vercel.com/atom",
+    "https://nerdy.dev/rss.xml",
   ],
   rules({ index }) {
     return {
