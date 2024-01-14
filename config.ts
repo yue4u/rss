@@ -50,6 +50,7 @@ rss({
     "https://blog.jetbrains.com/feed/",
     "https://vercel.com/atom",
     "https://nerdy.dev/rss.xml",
+    "https://api.quantamagazine.org/feed/",
   ],
   rules({ index }) {
     return {
