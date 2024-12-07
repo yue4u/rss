@@ -6,23 +6,20 @@ rss({
     uri: process.env.MONGODB_URI!,
   },
   forward: {
-    type: "telegram",
-    token: process.env.TG_TOKEN!,
-    chatId: process.env.TG_CHAT_ID!,
-    limit: 10,
+    type: "atp",
+    identifier: process.env.BLUESKY_USERNAME!,
+    password: process.env.BLUESKY_PASSWORD!,
   },
   feeds: [
     "https://xkcd.com/rss.xml",
     "https://github.blog/feed",
     "https://this-week-in-rust.org/rss.xml",
-    "https://coolshell.cn/feed",
     "https://blog.chromium.org/atom.xml",
     "https://css-tricks.com/feed/",
     "https://overreacted.io/rss.xml",
     "https://reactjs.org/feed.xml",
     "https://blog.cloudflare.com/rss/", // note the trailing slash is necessary
     "https://blog.rust-lang.org/feed.xml",
-    "https://rustmagazine.github.io/rust_magazine_2021/rss.xml",
     "https://www.swyx.io/rss.xml",
     "https://devblogs.microsoft.com/typescript/feed/",
     "https://blog.vuejs.org/feed.rss",
@@ -38,7 +35,6 @@ rss({
     "https://v8.dev/blog.atom",
     "https://blog.google/rss/",
     "https://nodejs.org/en/feed/blog.xml",
-    "https://vuedose.tips/rss",
     "https://inside.pixiv.blog/rss",
     "https://www.swift.org/atom.xml",
     "https://engineering.mercari.com/blog/feed.xml/",
@@ -51,6 +47,8 @@ rss({
     "https://vercel.com/atom",
     "https://nerdy.dev/rss.xml",
     "https://api.quantamagazine.org/feed/",
+    "https://bsky.social/about/rss.xml",
+    "https://bevyengine.org/atom.xml",
   ],
   rules({ index }) {
     return {

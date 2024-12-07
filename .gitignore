@@ -3,3 +3,8 @@ tmp
 .env*
 content
 dist
+
+# wrangler project
+
+.dev.vars
+.wrangler/

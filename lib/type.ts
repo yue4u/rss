@@ -2,6 +2,7 @@ import type { TGConfig } from "./forwarder/telegram";
 import type { default as Parser } from "rss-parser";
 import type { LocalStorageConfig } from "./storage/local";
 import type { MongodbStorageConfig } from "./storage/mongodb";
+import type { AtpConfig } from "./forwarder/atp";
 
 export type RawFeed = ReturnType<Parser["parseURL"]> extends Promise<infer T>
   ? T
@@ -12,11 +13,11 @@ export interface RSSFeedSource extends RSSFeedSourceConfig {
 }
 export type RSSFeedSourceOrUrl = RSSFeedSource | string;
 
-type RSSForwardConfig = TGConfig;
+type RSSForwardConfig = TGConfig | AtpConfig;
 export type FeedItem = RawFeed["items"][number] & { link: string };
 
 export interface ItemFormatter {
-  (feed: FeedItem): string;
+  (feed: FeedItem): ForwarderItem;
 }
 
 export interface RSSContext {
@@ -42,11 +43,17 @@ export interface RSSConfig {
 }
 
 export interface Forwarder<C> {
-  init(config: C): ForwarderInstance;
+  init(config: C): ForwarderInstance | Promise<ForwarderInstance>;
 }
 
 export interface ForwarderInstance {
-  send(items: string[]): Promise<void>;
+  send(items: ForwarderItem[]): Promise<void>;
+}
+
+export interface ForwarderItem {
+  title?: string;
+  url: string;
+  content: string;
 }
 
 export interface Storage<C> {

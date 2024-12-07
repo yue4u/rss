@@ -24,7 +24,7 @@ export const telegram: Forwarder<TGConfig> = {
 
         await Promise.all(
           individualSends.map((item) => {
-            return bot.sendMessage(config.chatId, item, {});
+            return bot.sendMessage(config.chatId, item.content, {});
           })
         );
 

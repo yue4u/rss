@@ -2,7 +2,13 @@ import dotenv from "dotenv";
 dotenv.config();
 import { build } from "esbuild";
 
-const ENV_KEYS = ["TG_TOKEN", "TG_CHAT_ID", "MONGODB_URI"];
+const ENV_KEYS = [
+  "TG_TOKEN",
+  "TG_CHAT_ID",
+  "MONGODB_URI",
+  "BLUESKY_USERNAME",
+  "BLUESKY_PASSWORD",
+];
 
 const define = Object.fromEntries(
   ENV_KEYS.filter((k) => process.env[k]).map((k) => [
