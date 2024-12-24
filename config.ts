@@ -49,6 +49,7 @@ rss({
     "https://api.quantamagazine.org/feed/",
     "https://bsky.social/about/rss.xml",
     "https://bevyengine.org/atom.xml",
+    "https://bughunters.google.com/feed/en",
   ],
   rules({ index }) {
     return {
