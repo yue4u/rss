@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
+import { defineConfig } from "rolldown";
 dotenv.config();
-import { build } from "esbuild";
 
 const ENV_KEYS = [
   "TG_TOKEN",
@@ -17,10 +17,12 @@ const define = Object.fromEntries(
   ])
 );
 
-build({
+export default defineConfig({
+  input: "config.ts",
   platform: "node",
-  entryPoints: ["./config.ts"],
-  outfile: "./dist/rss.js",
-  bundle: true,
   define,
-}).catch(() => process.exit(1));
+  output: {
+    format: "cjs",
+    file: "dist/rss.js",
+  },
+});
