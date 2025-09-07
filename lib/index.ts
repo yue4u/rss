@@ -13,6 +13,17 @@ import { local } from "./storage/local";
 import { mongodb } from "./storage/mongodb";
 
 export async function rss(config: RSSConfig) {
+  if (process.env.TEST) {
+    await Promise.allSettled(
+      config.feeds.map(async (f) => {
+        if (typeof f === "string") {
+          const res = await fetch(f);
+          console.log(`[${res.ok ? "ok" : "failed"}] ${f}`);
+        }
+      })
+    );
+    return;
+  }
   const ctx = {
     config,
     parser: new Parser(),
