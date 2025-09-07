@@ -50,6 +50,7 @@ rss({
     "https://bsky.social/about/rss.xml",
     "https://bevyengine.org/atom.xml",
     "https://bughunters.google.com/feed/en",
+    "https://archlinux.org/feeds/news/",
   ],
   rules({ index }) {
     return {
